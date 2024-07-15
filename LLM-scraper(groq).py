@@ -5,7 +5,6 @@ import gradio as gr
 from groq import Groq
 from langchain_community.document_loaders import WebBaseLoader
 
-# Specify the CSV file path
 csv_file_path = 'output.csv'
 
 def get_api_key():
@@ -76,9 +75,8 @@ def load_and_display_webpage_content(url, file, model_name, save_to_csv_flag):
                     counting = f"Total URLs processed: {count}"
                 return counting, all_results
     except Exception as e:
-        return str(e), ""
+        return str(e), f"Error occurred at: {index}"
 
-# Create Gradio interface
 url_input = gr.Textbox(label="Enter URL", type="text")
 file_upload = gr.File(label="Upload CSV File", file_types=[".csv"])
 dropdown = gr.Dropdown(
